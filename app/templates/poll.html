@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Vote - Pollify{% endblock %}
+
+{% block content %}
+<div class="poll-vote">
+    <h1>{{ poll.question }}</h1>
+    
+    <form action="{{ url_for('main.submit_vote', poll_id=poll_id) }}" method="POST">
+        <div class="options-list">
+            {% for option in poll.options %}
+            <div class="option">
+                <input type="radio" name="option" id="option-{{ loop.index }}" value="{{ option }}" required>
+                <label for="option-{{ loop.index }}">{{ option }}</label>
+            </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn-primary">Submit Vote</button>
+    </form>
+</div>
+{% endblock %}

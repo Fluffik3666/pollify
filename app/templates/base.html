@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create and share polls easily with Pollify - Simple, Ad-free, and Private">
+    
+    <title>{% block title %}Pollify{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Cookie Consent Banner -->
+    <script>
+        function acceptCookies() {
+            document.cookie = "cookie_consent=accepted;max-age=" + 60*60*24*365 + ";path=/";
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (!document.cookie.includes('cookie_consent=accepted')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="{{ url_for('main.index') }}">Pollify</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">
+                        {{ message }}
+                        <button class="alert-close" onclick="this.parentElement.style.display='none'">&times;</button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Page Content -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner" style="display: none;">
+        <p>We use cookies to improve your experience and remember your polls. 
+           By continuing to use this site, you agree to our <a href="{{ url_for('main.privacy') }}">privacy policy</a>.</p>
+        <button onclick="acceptCookies()" class="btn-primary">Accept</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Pollify - Simple, Ad-free, and Private</p>
+            <nav class="footer-links">
+                <a href="{{ url_for('main.privacy') }}">Privacy Policy</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

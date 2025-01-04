@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Pollify - Create or View Polls{% endblock %}
+
+{% block content %}
+<div class="your-polls">
+    <h2>Your Polls</h2>
+    <div class="your-polls-list">
+        <!-- Will be populated by JavaScript -->
+    </div>
+</div>
+
+<div class="home-container">
+    <div class="create-poll">
+        <h1>Create Your Poll</h1>
+    <form action="{{ url_for('main.create_poll') }}" method="POST">
+        <div class="form-group">
+            <label for="question">Your Question</label>
+            <input type="text" id="question" name="question" required>
+        </div>
+
+        <div class="form-group" id="options-container">
+            <label>Options</label>
+            <div class="option-inputs">
+                <input type="text" name="options" required>
+                <input type="text" name="options" required>
+            </div>
+            <button type="button" class="btn-secondary" onclick="addOption()">+ Add Option</button>
+        </div>
+
+        <button type="submit" class="btn-primary">Create Poll</button>
+    </form>
+</div>
+
+<div class="view-results">
+    <h2>View Poll Results</h2>
+    <form action="{{ url_for('main.view_results') }}" method="GET" class="results-form">
+        <div class="form-group">
+            <label for="poll_id">Poll ID</label>
+            <input type="text" id="poll_id" name="poll_id" required placeholder="Enter poll ID">
+        </div>
+        <div class="form-group">
+            <label for="admin_code">Admin Code</label>
+            <input type="text" id="admin_code" name="admin_code" required placeholder="Enter admin code">
+        </div>
+        <button type="submit" class="btn-secondary">View Results</button>
+    </form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Poll Created - Pollify{% endblock %}
+
+{% block content %}
+<div class="poll-created">
+    <h1>Poll Created Successfully!</h1>
+    
+    <div class="poll-details">
+        <div class="info-box">
+            <h2>Share Poll Link</h2>
+            <div class="copy-box">
+                <input type="text" value="{{ poll_url }}" id="poll-url" readonly>
+                <button onclick="copyToClipboard('poll-url')" class="btn-secondary">Copy</button>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h2>Save These Details</h2>
+            <div class="poll-credentials">
+                <div class="credential-item">
+                    <label>Poll ID</label>
+                    <div class="copy-box">
+                        <input type="text" value="{{ poll_id }}" id="poll-id" readonly>
+                        <button onclick="copyToClipboard('poll-id')" class="btn-secondary">Copy</button>
+                    </div>
+                </div>
+                <div class="credential-item">
+                    <label>Admin Code</label>
+                    <div class="copy-box">
+                        <input type="text" value="{{ admin_code }}" id="admin-code" readonly>
+                        <button onclick="copyToClipboard('admin-code')" class="btn-secondary">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <a href="{{ poll_url }}" class="btn-primary">View Poll</a>
+        <a href="{{ url_for('main.view_results', poll_id=poll_id, admin_code=admin_code) }}" class="btn-secondary">View Results</a>
+    </div>
+</div>
+{% endblock %}

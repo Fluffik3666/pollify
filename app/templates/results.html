@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Results - Pollify{% endblock %}
+
+{% block content %}
+<div class="poll-results">
+    <h1>Poll Results</h1>
+    <h2>{{ poll.question }}</h2>
+
+    <div class="results-container">
+        {% for option in poll.options %}
+        <div class="result-bar">
+            <div class="result-label">{{ option }}</div>
+            <div class="result-progress">
+                {% set votes = results.get(option, 0) %}
+                {% if votes > 0 %}
+                    <div class="progress-bar" style="width: {{ (votes / results.values()|sum * 100)|round|int }}%">
+                        {{ votes }} vote{{ 's' if votes != 1 }}
+                    </div>
+                {% else %}
+                    <div class="no-votes">0 votes</div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="total-votes">
+        Total votes: {{ results.values()|sum }}
+    </div>
+</div>
+{% endblock %}
