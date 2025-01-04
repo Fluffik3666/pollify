@@ -14,7 +14,7 @@ Pollify is a simple, ad-free, and private polling application built with Flask a
 
 ## Live Demo
 
-Try it out at: [pollify-zeta.vercel.app](https://pollify-zeta.vercel.app/)
+Try it out at: [pollify.co.uk](https://pollify.co.uk)
 
 ## Tech Stack
 
