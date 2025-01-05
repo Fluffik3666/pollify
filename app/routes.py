@@ -50,7 +50,7 @@ def submit_vote(poll_id):
         return redirect(url_for('main.view_poll', poll_id=poll_id))
     
     save_vote(poll_id, option)
-    flash('Vote submitted successfully!')
+    flash('Vote submitted successfully!', 'message')
     return redirect(url_for('main.view_poll', poll_id=poll_id))
 
 @main.route('/privacy')
