@@ -41,7 +41,7 @@
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-                    <div class="alert">
+                    <div class="alert-success">
                         {{ message }}
                         <button class="alert-close" onclick="this.parentElement.style.display='none'">&times;</button>
                     </div>
